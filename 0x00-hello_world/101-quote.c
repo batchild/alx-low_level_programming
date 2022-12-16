@@ -1,18 +1,24 @@
 #include <stdio.h>
-#include <string.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <unistd.h>
 
+/**
+ * main - prints to string
+ * Description: Prints "and that piece of art is usedull.." without puts
+ * return: 1
+ */
 
 int main(void)
 
 {
-int w;
-w = write(STDOUT_FILEND, "and that piece of art is usedul\" - Dora Korpar, 2015-10-19\n", 10);
-if(w < 0)
-{
- perror("Writing error: ");
-}
-return(1);
+char *s = "and the piece of art is useful\" -Dora kopar, 2015-10-19\n";
+long l = 59;
+long fd = 1;
+long syscall = 1;
+long ret = 0;
+_asm_("syscall"
+		: "=a" (ret)
+		: "=a" (syscall),
+		"D" (fd),
+		"S" (s),
+		"d" (l));
+return (1);
 }
