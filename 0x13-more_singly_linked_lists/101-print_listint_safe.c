@@ -42,19 +42,19 @@ size_t print_listint_safe(const listint_t *head)
 
 	while (head != NULL)
 	{
-			for (i = 0; i < num; i++)
+		for (i = 0; i < num; i++)
+		{
+			if (head == list[i])
 			{
-				if (head == list[i])
-				{
-					printf("-> [%p] %d\n", (void *)head, head->n);
+				printf("-> [%p] %d\n", (void *)head, head->n);
 					free(list);
 					return (num);
-				}
 			}
-			num++;
-			list = _r(list, num, head);
-			printf("[%p] %d\n", (void *)head, head->n);
-			head = head->next;
+		}
+		num++;
+		list = _r(list, num, head);
+		printf("[%p] %d\n", (void *)head, head->n);
+		head = head->next;
 	}
 	free(list);
 	return (num);
